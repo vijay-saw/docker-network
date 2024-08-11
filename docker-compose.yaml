@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  myexpressapp:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - mynodeapp
+
+  mynodeapp:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - myexpressapp
+
+networks:
+  myexpressapp:
+    driver: bridge
+  mynodeapp:
+    driver: bridge
